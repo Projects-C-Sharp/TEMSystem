@@ -1,0 +1,20 @@
+@model IEnumerable<TEMSystem.Models.Event>
+
+<div class="row">
+    @foreach (var e in Model)
+    {
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="@e.ImagenUrl">
+                </div>
+                <div class="card-content black-text">
+                    <span class="card-title">@e.Nombre</span>
+                    <p>@e.Descripcion</p>
+                    <p><b>@e.Fecha</b></p>
+                    <p>@e.Ubicacion</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

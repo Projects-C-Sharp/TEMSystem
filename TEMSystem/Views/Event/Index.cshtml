@@ -1,0 +1,27 @@
+@model IEnumerable<TEMSystem.Models.Event>
+
+<a class="btn green" href="/Event/Create">Nuevo Evento</a>
+
+<table class="striped white-text">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var e in Model)
+    {
+        <tr>
+            <td>@e.Nombre</td>
+            <td>@e.Fecha</td>
+            <td>
+                <a class="btn blue" href="/Event/Edit/@e.Id">Editar</a>
+                <a class="btn red" href="/Event/Delete/@e.Id">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

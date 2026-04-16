@@ -1,0 +1,11 @@
+@model TEMSystem.Models.Event
+
+<form method="post">
+    <input placeholder="Nombre" asp-for="Nombre" />
+    <input type="datetime-local" asp-for="Fecha" />
+    <input placeholder="Ubicación" asp-for="Ubicacion" />
+    <input placeholder="URL Imagen" asp-for="ImagenUrl" />
+    <textarea placeholder="Descripción" asp-for="Descripcion"></textarea>
+
+    <button class="btn">Guardar</button>
+</form>
