@@ -40,12 +40,21 @@ Before running this application, ensure you have the following installed:
 
 1. **Database Setup**:
    - Create a MySQL database for the application.
-   - Update the connection string in `appsettings.json`:
-     ```json
-     "ConnectionStrings": {
-       "DefaultConnection": "server=your-server;port=3306;database=your-database;user=your-username;password=your-password"
-     }
-     ```
+     - Update the connection string in `appsettings.json`:
+        ```json
+        {
+            "Logging": {
+              "LogLevel": {
+                  "Default": "Information",
+                  "Microsoft.AspNetCore": "Warning"
+              }
+            },
+            "ConnectionStrings": {
+                "DefaultConnection": "server=your-server;port=3306;database=your-database;user=your-username;password=your-password"
+            },
+            "AllowedHosts": "*"
+        }
+        ```
    - Replace the placeholder values with your actual MySQL server details.
 
 2. **Apply Database Migrations**:
