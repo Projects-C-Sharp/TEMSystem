@@ -77,7 +77,25 @@ Before running this application, ensure you have the following installed:
 
 3. Open your browser and navigate to `https://localhost:5001` (or the URL shown in the console).
 
-## Project Structure
+## Docker Usage
+
+To run the application using Docker, follow these steps:
+
+1. Ensure Docker is installed on your system.
+
+2. Build the Docker image:
+   ```bash
+   docker build -t temsystem .
+   ```
+
+3. Run the container:
+   ```bash
+   docker run -d -p 8080:8080 temsystem
+   ```
+
+4. Open your browser and navigate to `http://localhost:8080` to access the application.
+
+Note: Make sure your MySQL database is accessible from the Docker container. You may need to update the connection string in `appsettings.json` or use environment variables for Docker configuration.
 
 ```
 TEMSystem/
