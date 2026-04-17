@@ -1,35 +1,58 @@
 @model TEMSystem.Models.Event
 
-<h4>Editar Evento</h4>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                
+                <div class="card-header bg-warning text-dark text-center rounded-top-4">
+                    <h4 class="mb-0">Editar Evento</h4>
+                </div>
 
-<form method="post">
-    <input type="hidden" asp-for="Id" />
+                <div class="card-body p-4">
+                    <form method="post">
 
-    <div class="input-field">
-        <input asp-for="Nombre" />
-        <label class="active">Nombre</label>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input class="form-control" asp-for="Nombre" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Fecha</label>
+                            <input class="form-control" type="datetime-local" asp-for="Fecha" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Ubicación</label>
+                            <input class="form-control" asp-for="Ubicacion" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">URL de Imagen</label>
+                            <input class="form-control" asp-for="ImagenUrl" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea class="form-control" rows="4" asp-for="Descripcion"></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-between gap-2">
+                            <button class="btn btn-warning w-50">
+                                Actualizar
+                            </button>
+
+                            <a href="/Event/Index" class="btn btn-secondary w-50">
+                                Cancelar
+                            </a>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
-
-    <div class="input-field">
-        <input type="datetime-local" asp-for="Fecha" />
-        <label class="active">Fecha</label>
-    </div>
-
-    <div class="input-field">
-        <input asp-for="Ubicacion" />
-        <label class="active">Ubicación</label>
-    </div>
-
-    <div class="input-field">
-        <input asp-for="ImagenUrl" />
-        <label class="active">URL Imagen</label>
-    </div>
-
-    <div class="input-field">
-        <textarea class="materialize-textarea" asp-for="Descripcion"></textarea>
-        <label class="active">Descripción</label>
-    </div>
-
-    <button class="btn blue">Actualizar</button>
-    <a href="/Events/Index" class="btn grey">Cancelar</a>
-</form>
+</div>

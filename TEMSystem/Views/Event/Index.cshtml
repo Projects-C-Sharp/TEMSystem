@@ -1,27 +1,52 @@
 @model IEnumerable<TEMSystem.Models.Event>
 
-<a class="btn green" href="/Event/Create">Nuevo Evento</a>
+<div class="container mt-5">
 
-<table class="striped white-text">
-    <thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Fecha</th>
-        <th>Acciones</th>
-    </tr>
-    </thead>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">Eventos</h3>
+        <a class="btn btn-success" href="/Event/Create">
+            + Nuevo Evento
+        </a>
+    </div>
 
-    <tbody>
-    @foreach (var e in Model)
-    {
-        <tr>
-            <td>@e.Nombre</td>
-            <td>@e.Fecha</td>
-            <td>
-                <a class="btn blue" href="/Event/Edit/@e.Id">Editar</a>
-                <a class="btn red" href="/Event/Delete/@e.Id">Eliminar</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach (var e in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@e.Nombre</td>
+                            <td>@e.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a class="btn btn-warning btn-sm" href="/Event/Edit/@e.Id">
+                                        Editar
+                                    </a>
+
+                                    <a class="btn btn-danger btn-sm" href="/Event/Delete/@e.Id">
+                                        Eliminar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,11 +1,50 @@
 @model TEMSystem.Models.Event
 
-<form method="post">
-    <input placeholder="Nombre" asp-for="Nombre" />
-    <input type="datetime-local" asp-for="Fecha" />
-    <input placeholder="Ubicación" asp-for="Ubicacion" />
-    <input placeholder="URL Imagen" asp-for="ImagenUrl" />
-    <textarea placeholder="Descripción" asp-for="Descripcion"></textarea>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center rounded-top-4">
+                    <h4 class="mb-0">Crear Evento</h4>
+                </div>
 
-    <button class="btn">Guardar</button>
-</form>
+                <div class="card-body p-4">
+                    <form method="post">
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input class="form-control" placeholder="Nombre del evento" asp-for="Nombre" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Fecha</label>
+                            <input class="form-control" type="datetime-local" asp-for="Fecha" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Ubicación</label>
+                            <input class="form-control" placeholder="Lugar del evento" asp-for="Ubicacion" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">URL de Imagen</label>
+                            <input class="form-control" placeholder="https://..." asp-for="ImagenUrl" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea class="form-control" rows="4" placeholder="Describe el evento..." asp-for="Descripcion"></textarea>
+                        </div>
+
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg">
+                                Guardar Evento
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
