@@ -62,6 +62,21 @@ Before running this application, ensure you have the following installed:
      ```bash
      dotnet ef database update
      ```
+    
+#### Handle with Error EF Core
+```bash
+    dotnet ef migrations add InitialCreate
+    No se pudo ejecutar porque no se encontró el comando o archivo especificado.
+    Entre las posibles razones para esto se incluyen:
+    * Escribió de manera incorrecta un comando dotnet integrado.
+    * Tenía previsto ejecutar un programa .NET, pero dotnet-ef no existe.
+    * Tuvo la intención de ejecutar una herramienta global, pero no se encontró un ejecutable con el prefijo dotnet con este nombre en la ruta.
+```
+
+#### Execute:
+```bash
+dotnet tool install --global dotnet-ef
+```
 
 ## Running the Application
 
