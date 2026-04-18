@@ -1,40 +1,239 @@
 @model IEnumerable<TEMSystem.Models.Event>
 
-<div class="container mt-5">
+<style>
+    /* ====== FONDO ====== */
+    .events-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
 
-    <h3 class="fw-bold mb-4 text-center">Eventos Disponibles</h3>
+    .events-bg img {
+        width: 100%;
+        height: 100%;
+        /*object-fit: cover;*/
+        filter: brightness(0.4) contrast(1.2);
+    }
+
+    .events-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: rgba(0,0,0,0.6);
+        pointer-events: none;
+    }
+
+    /* ====== CONTENIDO ====== */
+    .events-container {
+        position: relative;
+        z-index: 2;
+        margin-top: 100px;
+        padding-bottom: 50px;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+        background: linear-gradient(90deg, #00eaff, #ff00c8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* ====== CARD ====== */
+    .event-card {
+        border-radius: 20px;
+        overflow: hidden;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.15);
+        transition: 0.4s;
+    }
+
+    .event-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .event-img {
+        height: 220px;
+        width: 100%;
+        object-fit: cover;
+        transition: 0.4s;
+    }
+
+    .event-card:hover .event-img {
+        transform: scale(1.1);
+    }
+
+    .img-overlay {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 220px;
+        background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85));
+    }
+
+    .event-body {
+        padding: 20px;
+        color: white;
+    }
+
+    .event-title {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .event-desc {
+        font-size: 0.95rem;
+        color: #ccc;
+        margin-top: 10px;
+    }
+
+    .event-info {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        color: #ddd;
+    }
+
+    /* BOTÓN */
+    .btn-event {
+        margin-top: 15px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 30px;
+        border: none;
+        background: linear-gradient(90deg, #00eaff, #ff00c8);
+        color: white;
+        transition: 0.3s;
+    }
+
+    .btn-event:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255,0,200,0.7);
+    }
+
+    /* ====== MODAL ====== */
+    .glass-modal {
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+    }
+
+    .modal {
+        z-index: 2000 !important;
+    }
+    
+    .modal-backdrop {
+        z-index: 1990 !important;
+    }
+
+    .modal-backdrop.show {
+        background-color: transparent;
+    }
+</style>
+
+<!-- FONDO -->
+<div class="events-bg">
+    <img src="~/images/fondo.gif" />
+</div>
+<div class="events-overlay"></div>
+
+<!-- CONTENIDO -->
+<div class="container events-container">
+
+    <h2 class="title">Eventos Disponibles</h2>
 
     <div class="row g-4">
         @foreach (var e in Model)
         {
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card h-100 shadow-lg border-0 rounded-4">
+        <div class="col-md-4">
+            <div class="event-card">
 
-                    <img src="@e.ImagenUrl" class="card-img-top rounded-top-4" style="height: 200px; object-fit: cover;" />
+                <div class="position-relative">
+                    <img src="@e.ImagenUrl" class="event-img" />
+                    <div class="img-overlay"></div>
+                </div>
 
-                    <div class="card-body d-flex flex-column">
+                <div class="event-body">
+                    <div class="event-title">@e.Nombre.ToUpper()</div>
 
-                        <h5 class="card-title fw-bold">@e.Nombre</h5>
+                    <div class="event-desc">@e.Descripcion</div>
 
-                        <p class="card-text text-muted" style="flex-grow: 1;">
-                            @e.Descripcion
-                        </p>
-
-                        <div class="mt-3">
-                            <p class="mb-1">
-                                <strong>📅</strong> @e.Fecha.ToString("dd/MM/yyyy HH:mm")
-                            </p>
-
-                            <p class="mb-0">
-                                <strong>📍</strong> @e.Ubicacion
-                            </p>
-                        </div>
-
+                    <div class="event-info">
+                        <div>📅 @e.Fecha.ToString("dd MMM yyyy HH:mm")</div>
+                        <div>📍 @e.Ubicacion</div>
                     </div>
 
+                    <button class="btn-event open-modal"
+                            data-nombre="@e.Nombre"
+                            data-descripcion="@e.Descripcion"
+                            data-fecha="@e.Fecha.ToString("dd MMM yyyy HH:mm")"
+                            data-ubicacion="@e.Ubicacion"
+                            data-imagen="@e.ImagenUrl">
+                        Ver Evento
+                    </button>
                 </div>
+
             </div>
+        </div>
         }
     </div>
-
 </div>
+
+<!-- MODAL -->
+<div class="modal fade" id="eventModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content glass-modal">
+
+            <div class="modal-header border-0">
+                <h5 id="modalTitle"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <img id="modalImg" class="w-100 rounded-4 mb-3" style="max-height:300px; object-fit:cover;" />
+
+                <p id="modalDesc"></p>
+
+                <div class="mt-3">
+                    <p><strong>📅</strong> <span id="modalFecha"></span></p>
+                    <p><strong>📍</strong> <span id="modalUbicacion"></span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    let modalInstance;
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const modalElement = document.getElementById('eventModal');
+        modalInstance = new bootstrap.Modal(modalElement);
+
+        document.querySelectorAll(".open-modal").forEach(btn => {
+            btn.addEventListener("click", function () {
+
+                document.getElementById("modalTitle").innerText = this.dataset.nombre;
+                document.getElementById("modalDesc").innerText = this.dataset.descripcion;
+                document.getElementById("modalFecha").innerText = this.dataset.fecha;
+                document.getElementById("modalUbicacion").innerText = this.dataset.ubicacion;
+                document.getElementById("modalImg").src = this.dataset.imagen;
+
+                modalInstance.show();
+            });
+        });
+    });
+</script>

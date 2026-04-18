@@ -1,6 +1,126 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Privacidad";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+    /* ===== FONDO ===== */
+    .privacy-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .privacy-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.35);
+    }
+
+    .privacy-overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: rgba(0,0,0,0.6);
+    }
+
+    /* ===== CONTENIDO ===== */
+    .privacy-container {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    /* CARD GLASS */
+    .privacy-card {
+        max-width: 900px;
+        width: 100%;
+        padding: 40px;
+
+        border-radius: 20px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.2);
+
+        color: white;
+    }
+
+    /* TÍTULO */
+    .privacy-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+
+        background: linear-gradient(90deg, #00eaff, #ff00c8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* TEXTO */
+    .privacy-text {
+        color: #ddd;
+        line-height: 1.7;
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    /* SUBTÍTULOS */
+    .privacy-subtitle {
+        margin-top: 25px;
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: #00eaff;
+    }
+</style>
+
+<!-- FONDO -->
+<div class="privacy-bg">
+    <img src="~/images/fondo.gif" />
+</div>
+<div class="privacy-overlay"></div>
+
+<!-- CONTENIDO -->
+<div class="privacy-container">
+
+    <div class="privacy-card">
+
+        <h1 class="privacy-title">Política de Privacidad</h1>
+
+        <p class="privacy-text">
+            En Eventra valoramos tu privacidad y nos comprometemos a proteger tu información personal.
+            Esta política describe cómo recopilamos, usamos y protegemos tus datos dentro de nuestra plataforma.
+        </p>
+
+        <div class="privacy-subtitle">Información que recopilamos</div>
+        <p class="privacy-text">
+            Podemos recopilar información como nombre, correo electrónico, ubicación y actividad dentro de la app,
+            con el fin de mejorar tu experiencia en la plataforma.
+        </p>
+
+        <div class="privacy-subtitle">Uso de la información</div>
+        <p class="privacy-text">
+            Utilizamos tus datos para mostrar eventos relevantes, mejorar nuestros servicios y brindarte una experiencia personalizada.
+        </p>
+
+        <div class="privacy-subtitle">Protección de datos</div>
+        <p class="privacy-text">
+            Implementamos medidas de seguridad modernas para proteger tu información contra accesos no autorizados.
+        </p>
+
+        <div class="privacy-subtitle">Contacto</div>
+        <p class="privacy-text">
+            Si tienes dudas sobre esta política, puedes contactarnos a través de nuestros canales oficiales.
+        </p>
+
+    </div>
+
+</div>
